@@ -1,0 +1,237 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Rammetto+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+}
+
+.overall-container {
+    background-color: rgb(61, 27, 139);
+    width: 100%;
+}
+
+.container {
+    background-color: yellow;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.nav h1 {
+    font-size: 2rem;
+    color: rgb(61, 27, 139);
+}
+
+h3{
+    color: white;
+}
+button {
+    font-size: 1rem;
+    padding: 8px 12px;
+    margin-right: 10px;
+    background-color: rgb(61, 27, 139);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    
+}
+
+.search-btn{
+    box-shadow: 0px 3px 1px 3px rgb(248, 246, 250);
+}
+
+button a {
+    text-decoration: none;
+    color: inherit;
+    
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: rgb(28, 28, 189);
+}
+
+.flashcard-head {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2.5rem;
+    color: yellow;;
+}
+
+.search-wrapper {
+    max-width: 600px;
+    margin: auto;
+}
+
+.search-card {
+    display: flex;
+    gap: 10px;
+}
+
+.search-card input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid rgb(60, 10, 126);
+    border-radius: 5px;
+}
+
+.search-btn {
+    background-color: rgb(61, 27, 139);
+    color: white;
+    border: none;
+}
+
+.section1 {
+    background-color: white;
+    color: rgb(61, 27, 139);
+}
+
+.section1, .section2 {
+    text-align: center;
+    padding: 20px;
+}
+
+h2{
+    font-size: 3rem;
+}
+
+p{
+    font-size: 1.5rem;
+}
+.section1-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: yellow;
+    color: rgb(61, 27, 139);
+    font-size: 2rem;
+    border-radius: 5px;
+    box-shadow: 0px 10px 0px 4px rgb(61, 27, 139);
+}
+
+.section2 ul {
+    list-style: none;
+    margin: 20px auto;
+    padding: 0;
+    max-width: 600px;
+}
+
+.section2 li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: white;
+}
+
+/* Responsive Design */
+
+/* Tablet Screens (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .flashcard-head {
+        font-size: 2rem;
+    }
+
+    .search-card {
+        flex-direction: column;
+    }
+
+    .section1-btn {
+        width: 80%;
+        margin: auto;
+    }
+
+    .section2 li {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Screens (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    .nav h1 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        font-size: 0.8rem;
+    }
+
+    .flashcard-head {
+        font-size: 1.5rem;
+    }
+
+    .search-card input {
+        font-size: 0.9rem;
+    }
+
+    .section1 h2 {
+        font-size: 1.5rem;
+    }
+
+
+    .section2 h3 {
+        font-size: 1.3rem;
+    }
+    
+}
+
+
+
+
+/* Make the nav-links visible on larger screens */
+
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    
+}
+
+/* Hide the hamburger button and keep the menu as a flex container on larger screens */
+.hamburger {
+    display: none; /* Hide on larger screens */
+    
+    
+}
+
+/* On small screens, hide the menu and show the hamburger */
+@media screen and (max-width: 768px) {
+    /* Hide the nav-links on small screens */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: sticky;
+        left: 0;
+        width: 100%;
+        gap: 10px;
+        
+    }
+
+    /* Show the hamburger on small screens */
+    .hamburger {
+        display: block;
+    }
+
+    /* When the 'show' class is added, display the menu */
+    .nav-links.show {
+        display: flex;
+        align-items: inherit ;
+        
+    }
+}
+
+

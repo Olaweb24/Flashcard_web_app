@@ -1,0 +1,160 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.overall-container {
+    background-color: rgb(153, 0, 255);
+    width: 100%;
+}
+
+.container {
+    background-color: rgb(253, 154, 24);
+    width: 100%;
+}
+
+.nav {
+    background-color: rgb(253, 154, 24);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+}
+
+.nav h1 {
+    font-size: 1.8rem;
+    color: rgb(60, 10, 126);
+}
+
+button {
+    font-size: 18px;
+    padding: 8px 12px;
+    margin-right: 10px;
+    background-color: white;
+    color: rgb(60, 10, 126);
+    border-radius: 5px;
+}
+
+.flashcard-head {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+.search-wrapper {
+    max-width: 600px;
+    margin: auto;
+    padding: 0 10px;
+}
+
+.search-card {
+    display: flex;
+    gap: 10px;
+}
+
+.search-card input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.search-btn {
+    background-color: rgb(60, 10, 126);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.section1, .section2 {
+    padding: 20px;
+    text-align: center;
+}
+
+.section1-btn {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1.5rem;
+    border: none;
+    background-color: rgb(253, 154, 24);
+    color: rgb(60, 10, 126);
+}
+
+h2, h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: rgb(60, 10, 126);
+}
+
+p, li {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 10px auto;
+    color: rgb(60, 10, 126);
+}
+
+/* Responsive Design */
+
+/* Tablet Screens (768px and below) */
+@media screen and (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav h1 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+    }
+
+    .search-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-card input, .search-btn {
+        width: 100%;
+    }
+
+    .section1-btn {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobile Screens (480px and below) */
+@media screen and (max-width: 480px) {
+    .nav h1 {
+        font-size: 1.3rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+
+    .flashcard-head {
+        font-size: 1.3rem;
+    }
+
+    .section1 h2, .section2 h3 {
+        font-size: 1.3rem;
+    }
+
+    p, li {
+        font-size: 0.9rem;
+        margin: 0 10px;
+    }
+
+    .section1-btn {
+        font-size: 1rem;
+        padding: 8px;
+    }
+}

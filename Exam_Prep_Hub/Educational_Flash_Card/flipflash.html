@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcard App</title>
+  <style>
+    /* General Page Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(61, 27, 139);
+    }
+
+    .nav {
+      background-color: yellow;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: auto;
+      padding: 10px 0;
+      padding-left: 20px;
+    }
+
+    .quiz-btn{
+        margin-right: 70px;
+        width: 80px;
+        height: 50px;
+        margin-top: 30px;
+        background-color: rgb(61, 27, 139);
+        border-style: inset;
+    }
+
+    a{
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+      color: white;
+    }
+
+    .learned-text {
+      color: white;
+      white-space: nowrap;
+    }
+
+    .learned-text span {
+      color: white;
+    }
+
+    .container {
+      width: 90%;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .controls input, .controls select, .controls button {
+      padding: 8px;
+      font-size: 1rem;
+      flex: 1 1 auto;
+      box-sizing: border-box;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #ddd;
+      height: 10px;
+      border-radius: 5px;
+      margin-right: 10px;
+      flex: 1;
+    }
+
+    .progress {
+      width: 0;
+      height: 100%;
+      background-color: whitesmoke;
+      border-radius: 5px;
+      transition: width 0.5s ease;
+    }
+
+    /* Flashcard Grid */
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /* Flip Card */
+    .card {
+      perspective: 1000px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease;
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-size: 1rem;
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .card-front {
+      background-color: whitesmoke;
+      color: black;
+    }
+
+    .card-back {
+      background-color: yellow;
+      color: black;
+      transform: rotateY(180deg);
+    }
+
+    /* Buttons */
+    .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: #ff4c4c;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      .controls {
+        flex-direction: column;
+      }
+
+      .progress-container {
+        flex-direction: column;
+      }
+
+      .progress-bar {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <h1 style="color: rgb(61, 27, 139);">FlashHash</h1>
+      <button class="quiz-btn"> <a href="flip_folder/quiz_page.html" target="_blank">Quiz</a> </button>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Flashcard App</h1>
+
+    <!-- Progress -->
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <div class="learned-text">
+        Learned: <span id="cardsLearnedSpan">0</span> / <span id="totalCards">0</span>
+      </div>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="controls">
+      <input type="text" id="searchBox" placeholder="Search cards..." />
+      <select id="filterCategory"></select>
+      <button onclick="addFlashcard()">Add Flashcard</button>
+    </div>
+
+    <!-- Flashcard Grid -->
+    <div class="flashcard-grid" id="flashcardGrid"></div>
+  </div>
+
+  <script>
+    const flashcardGrid = document.getElementById("flashcardGrid");
+    const cardsLearnedSpan = document.getElementById("cardsLearnedSpan");
+    const totalCardsSpan = document.getElementById("totalCards");
+    const filterCategory = document.getElementById("filterCategory");
+    const searchBox = document.getElementById("searchBox");
+    const progressBar = document.getElementById("progress");
+
+    let flashcards = JSON.parse(localStorage.getItem("flashcards")) || [];
+    let cardsLearned = flashcards.filter(card => card.learned).length;
+
+    // Render Cards
+    function renderCards() {
+      flashcardGrid.innerHTML = "";
+
+      flashcards.forEach((card, index) => {
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("card");
+        if (card.learned) cardElement.classList.add("flipped");
+
+        cardElement.innerHTML = `
+          <div class="card-inner">
+            <div class="card-front">${card.question}</div>
+            <div class="card-back">${card.answer}</div>
+          </div>
+          <button class="delete-btn" onclick="deleteCard(${index})">×</button>
+        `;
+
+        cardElement.addEventListener("click", () => {
+          if (!card.learned) markLearned(index);
+          cardElement.classList.toggle("flipped");
+        });
+
+        flashcardGrid.appendChild(cardElement);
+      });
+
+      updateProgress();
+      totalCardsSpan.textContent = flashcards.length;
+      cardsLearnedSpan.textContent = cardsLearned;
+    }
+
+    function markLearned(index) {
+      flashcards[index].learned = true;
+      cardsLearned++;
+      saveToLocalStorage();
+      renderCards();
+    }
+
+    function deleteCard(index) {
+      if (flashcards[index].learned) cardsLearned--;
+      flashcards.splice(index, 1);
+      saveToLocalStorage();
+      renderCards();
+    }
+
+    function addFlashcard() {
+      const question = prompt("Enter the question:");
+      const answer = prompt("Enter the answer:");
+      const category = prompt("Enter the category:");
+      if (question && answer && category) {
+        flashcards.push({ question, answer, category, learned: false });
+        saveToLocalStorage();
+        renderCards();
+      } else {
+        alert("Please fill all fields.");
+      }
+    }
+
+    function saveToLocalStorage() {
+      localStorage.setItem("flashcards", JSON.stringify(flashcards));
+    }
+
+    function updateProgress() {
+      const percent = flashcards.length > 0 ? (cardsLearned / flashcards.length) * 100 : 0;
+      progressBar.style.width = `${percent}%`;
+    }
+
+    searchBox.addEventListener("input", renderCards);
+    renderCards();
+  </script>
+</body>
+</html>

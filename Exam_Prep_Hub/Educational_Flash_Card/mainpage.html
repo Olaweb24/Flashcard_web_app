@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="overall-container">
+        <header>
+            <div class="container">
+                <div class="nav">
+                <h1>FlashHatch</h1>
+
+                <button class="hamburger" id="hamburger">
+                    &#9776; <!-- Unicode for the hamburger icon -->
+                </button>
+                    <div class="nav-links" id="nav-links">
+                        <button> <a href="">Home</a> </button>
+                        <button> <a href="flipflash.html" target="_blank">Cretate Flashcard</a> </button>
+                        <button> <a href="flip_folder/">Login</a> </button>
+                    
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+<h1 class="flashcard-head">Find Flashcards to Study</h1>
+<div class="search-wrapper">
+    <div class="search-box">
+        
+        <div class="search-card">
+            <input type="text" placeholder="search flashcards">
+            <div>
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br><br>
+
+<section>
+    <div class="section1">
+        <h2> Master Your Learning  with <br>Smart Flashcards </h2>
+        <p>Welcome to <strong>FlashHatch</strong> , a powerful and user-friendly platform designed to revolutionize the way you learn, study, and retain information. Whether you're a student preparing for exams, a professional mastering new skills, or someone who simply loves lifelong learning, our website provides an intuitive and efficient way to create, manage, and review flashcards.</p>
+
+        <button class="section1-btn"> <a href="flip_folder/login-page.html">Get Started</a></button>
+    </div>
+</section>
+
+<section>
+    <div class="section2">
+        <h3> Why Choose Us?</h3>
+                
+                    <ul>
+                        <li> <strong> <span>Efficiency:</span> </strong>  Study smarter with proven learning techniques like spaced repetition.</li>
+
+                        <li> <strong> <span>Customization:</span>  </strong> Tailor flashcards to your needs with text, images, and multimedia options.</li>
+
+                        <li> <strong> <span>Accessibility:</span> </strong>  Enjoy learning on any device, wherever you are.</li>
+
+                        <li> <strong> <span>Collaboration:</span>  </strong> Connect with others to share knowledge and resources.</li>
+
+                        <li> <strong> <span>User-Friendly:</span> </strong>  A clean and intuitive interface designed to enhance your study experience.</li>
+                    </ul>     
+                    
+                    
+            </div>
+        </section></p>
+    </div>
+</section>
+            <div id="reminderMessage"></div>
+    </div>
+ 
+    <script>
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("nav-links");
+
+        // Toggle the 'show' class when hamburger is clicked
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+        });
+    });
+
+
+
+        // Request notification permission
+ if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+}
+
+// Dynamic in-page reminder
+function showReminderMessage() {
+    const reminderElement = document.getElementById("reminderMessage");
+    reminderElement.textContent = "🔔 Reminder: Keep practicing your flashcards to stay sharp!";
+
+    // Remove the message after 10 seconds
+    setTimeout(() => {
+        reminderElement.textContent = "";
+    }, 10000);
+}
+
+// Browser notification reminder
+function sendReminderNotification() {
+    if (Notification.permission === "granted") {
+        new Notification("Flashcard Reminder", {
+            body: "Time to review your flashcards and keep learning!",
+            icon: "https://example.com/icon.png" // Optional icon
+        });
+    }
+}
+
+// Combine both reminders every 5 minutes
+setInterval(() => {
+    showReminderMessage();
+    sendReminderNotification();
+}, 300000); // 5 minutes
+    </script>
+</body>
+</html>

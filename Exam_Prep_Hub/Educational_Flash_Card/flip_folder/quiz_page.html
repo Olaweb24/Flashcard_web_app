@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(61, 27, 139);
+      color: white;
+      text-align: center;
+    }
+
+
+    .container {
+      margin: 50px auto;
+      max-width: 600px;
+      background-color: yellow;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      color: rgb(61, 27, 139);
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 1rem;
+      margin: 20px 0;
+      border-radius: 5px;
+      border: none;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: rgb(61, 27, 139);
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: rgb(61, 27, 139)
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="head-section"></div>
+  </header>
+  <div class="container">
+    <h1>Quiz Page</h1>
+    <div id="quizQuestion"></div>
+    <input type="text" id="userAnswer" placeholder="Enter your answer" />
+    <br>
+    <button onclick="submitAnswer()">Submit</button>
+    <p id="feedback"></p>
+    <button onclick="nextQuestion()">Next Question</button>
+  </div>
+
+  <script>
+    let flashcards = JSON.parse(localStorage.getItem("flashcards")) || [];
+    let currentCard;
+
+    function loadQuestion() {
+      if (flashcards.length === 0) {
+        document.getElementById("quizQuestion").innerHTML = "No flashcards available!";
+        return;
+      }
+      document.getElementById("feedback").innerText = "";
+      currentCard = flashcards[Math.floor(Math.random() * flashcards.length)];
+      document.getElementById("quizQuestion").innerHTML = `<p><strong>Question:</strong> ${currentCard.question}</p>`;
+      document.getElementById("userAnswer").value = "";
+    }
+
+    function submitAnswer() {
+      const userAnswer = document.getElementById("userAnswer").value.trim();
+      if (!userAnswer) {
+        alert("Please enter an answer!");
+        return;
+      }
+
+      const feedback = document.getElementById("feedback");
+      if (userAnswer.toLowerCase() === currentCard.answer.toLowerCase()) {
+        feedback.style.color = "lightgreen";
+        feedback.innerHTML = "Correct! 🎉";
+      } else {
+        feedback.style.color = "red";
+        feedback.innerHTML = `Incorrect! The correct answer is: <strong>${currentCard.answer}</strong>`;
+      }
+    }
+
+    function nextQuestion() {
+      loadQuestion();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

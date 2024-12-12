@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rammetto+One&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+#search-box{
+    width: 30%;
+    border-radius: 20px;
+    margin-left: 35%;
+}
+
+#filter-category{
+    width: 30%;
+    border-radius: 20px;
+    margin-left: 35%;
+}
+
+.progress-tracking p{
+    text-align: center;
+}
+  .container {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  h1, h2 {
+    margin-bottom: 1rem;
+    
+    text-align: center;
+  }
+  
+
+  input, #add-card-btn, select {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    width: 90%;
+    margin-left: 50px;
+    
+  }
+  
+.flashcards-container, button{
+    margin-bottom: 1rem;
+    width: 90%;
+   padding: 0.5rem;
+}
+
+
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .flashcards-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    padding: 0 10px;
+    
+  }
+  
+  .flashcard {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    background-color: #fafafa;
+  }
+  
+  .flashcard .actions {
+    margin-top: 0.5rem;
+  }
+  
+  .quiz-mode {
+    margin-top: 2rem;
+  }
+  
+  #quiz-result {
+    color: green;
+    font-weight: bold;
+  }
+  

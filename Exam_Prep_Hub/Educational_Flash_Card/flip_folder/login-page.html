@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Split Screen with Text and Login Form</title>
+  <style>
+    /* Reset margins and heights */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Container for the split screen */
+    .split-container {
+      display: flex;
+      height: 100vh; /* Full viewport height */
+    }
+
+    /* Left Section */
+    .left-section {
+      flex: 1;
+      background-color: rgb(60, 10, 126); /* Blue color */
+      color: white;
+      display: flex;
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1{
+        font-size: 3rem;
+    }
+
+    p{
+        font-size: 1.5rem;
+    }
+    /* Right Section */
+    .right-section {
+      flex: 1;
+      background-color: #ecf0f1; /* Light gray */
+      display: flex;
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+    }
+
+    /* Login Form */
+    .login-form {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    .login-form h2 {
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: rgb(60, 10, 126);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-form button:hover {
+      background-color: rgb(60, 10, 126);
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+
+    /* Create Account Link */
+    .create-account {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .create-account a {
+      color: #3498db;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .create-account a:hover {
+      text-decoration: underline;
+    }
+     /* Media Query for smaller screens (tablets and mobile) */
+     @media (max-width: 768px) {
+      .split-container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+      }
+
+      .left-section, .right-section {
+        flex: none; /* Each section takes full width */
+        width: 90%;
+      }
+
+      .login-form {
+        width: 70%; /* Make form width smaller on smaller screens */
+        margin: 20px auto; /* Center the form */
+      }
+    }
+
+    /* Media Query for very small screens (phones in portrait) */
+    @media (max-width: 480px) {
+      .left-section {
+        padding: 15px; /* Reduce padding for small screens */
+      }
+
+      .login-form {
+        width: 90%; /* Make form take more space on very small screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="split-container">
+    <!-- Left Section with Text -->
+    <div class="left-section">
+      <div>
+        <h1>Sign in and <br>start your learning journey <br>today </h1>
+        <p>Discover amazing content and connect with others. Login now to access exclusive features.</p>
+      </div>
+    </div>
+
+    <!-- Right Section with Login Form -->
+    <div class="right-section">
+      <div class="login-form">
+        <h2>Login</h2>
+        <form action="#" method="POST">
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit"> <a href="mainpage.html">Login</a> </button>
+        </form>
+
+         <!-- Create Account Link -->
+        <div class="create-account">
+            <p>Don't have an account?</p>
+            <a href="signup.html">Create an Account</a>
+          </div>
+
+    
+        
+   
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
